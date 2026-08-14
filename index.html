@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobin VPN | پشتیبانی</title>
+    <style>
+        /* تنظیمات اولیه */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #8e44ad;
+            --bg-color: #0b0c10;
+            --text-color: #ffffff;
+            --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* پس‌زمینه نئونی */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(16, 18, 29, 0.8) 0%, rgba(0, 0, 0, 1) 100%);
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        /* استایل لوگو */
+        .logo-container {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            max-width: 200px; /* تنظیم اندازه لوگو */
+            height: auto;
+            filter: drop-shadow(0 0 15px var(--primary-color));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* استایل بخش وضعیت چت */
+        .status-box {
+            background: rgba(16, 18, 29, 0.7);
+            border: 1px solid var(--primary-color);
+            box-shadow: var(--neon-glow);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 350px;
+            animation: zoomIn 1s ease-out 0.5s both;
+            position: relative;
+        }
+
+        .status-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .status-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* استایل دکمه ارتباط با پشتیبانی */
+        .support-section {
+            animation: fadeInUp 1s ease-out 1s both;
+            width: 100%;
+            max-width: 350px;
+        }
+        
+        .support-label {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .telegram-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #00d2ff, #8e44ad); /* گرادینت اختصاصی */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px; /* دکمه گرد */
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .telegram-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.5);
+            background: linear-gradient(to right, #00d2ff, #a569bd);
+        }
+        
+        .telegram-button:active {
+            transform: translateY(1px);
+        }
+
+        .telegram-icon {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        
+        /* انیمیشن‌ها */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            70% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px 5px rgba(0, 210, 255, 0.5); }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+        
+        /* فوتر */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- بخش لوگو -->
+    <div class="logo-container">
+        <!-- لوگوی اصلی شما که باید در همان پوشه باشد -->
+        <img src="image_0.png" alt="Mobin VPN Logo" class="logo">
+    </div>
+
+    <!-- بخش وضعیت چت آنلاین -->
+    <div class="status-box">
+        <div class="status-icon">💬</div>
+        <div class="status-text">چت آنلاین</div>
+        <p>در حال آماده‌سازی... به زودی پشتیبانی زنده راه‌اندازی خواهد شد.</p>
+    </div>
+
+    <!-- بخش دکمه تلگرام -->
+    <div class="support-section">
+        <p class="support-label">برای ارتباط مستقیم با من در تلگرام کلیک کنید:</p>
+        <a href="https://t.me/Mobin_Gorjizadeh2" class="telegram-button" target="_blank">
+            <span class="telegram-icon">✈️</span> <!-- آیکون تلگرام -->
+            ارتباط با پشتیبانی
+        </a>
+    </div>
+    
+    <!-- فوتر -->
+    <div class="footer">
+        Mobin VPN - Secure & Fast
+    </div>
+
+</body>
+</html>
