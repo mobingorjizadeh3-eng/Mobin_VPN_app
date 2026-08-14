@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mobin VPN | پشتیبانی</title>
+    <title>Mobin VPN | امنیت و سرعت پایدار</title>
     <style>
-        /* تنظیمات اولیه */
         :root {
-            --primary-color: #00d2ff;
-            --secondary-color: #8e44ad;
-            --bg-color: #0b0c10;
-            --text-color: #ffffff;
-            --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
+            --neon-blue: #00f2fe;
+            --neon-purple: #4facfe;
+            --neon-pink: #ff007f;
+            --bg-dark: #05050a;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
         }
 
         * {
@@ -22,184 +23,275 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
+            justify-content: space-between;
+            padding: 30px 20px;
             overflow-x: hidden;
             position: relative;
         }
-        
-        /* پس‌زمینه نئونی */
+
+        /* افکت پس‌زمینه متحرک شبکه سایبری */
         body::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(16, 18, 29, 0.8) 0%, rgba(0, 0, 0, 1) 100%);
-            opacity: 0.7;
-            z-index: -1;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(79, 172, 254, 0.03) 40%, transparent 70%);
+            animation: rotateBg 20s linear infinite;
+            z-index: -2;
         }
-        
-        /* استایل لوگو */
-        .logo-container {
-            margin-bottom: 40px;
+
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* کانتینر اصلی محتوا */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* بخش هدر و لوگوی CSS متحرک */
+        .brand-box {
+            text-align: center;
+            margin-bottom: 30px;
             animation: fadeInDown 1s ease-out;
         }
 
-        .logo {
-            max-width: 200px; /* تنظیم اندازه لوگو */
-            height: auto;
-            filter: drop-shadow(0 0 15px var(--primary-color));
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        /* استایل بخش وضعیت چت */
-        .status-box {
-            background: rgba(16, 18, 29, 0.7);
-            border: 1px solid var(--primary-color);
-            box-shadow: var(--neon-glow);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 350px;
-            animation: zoomIn 1s ease-out 0.5s both;
-            position: relative;
-        }
-
-        .status-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
-
-        .status-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        /* استایل دکمه ارتباط با پشتیبانی */
-        .support-section {
-            animation: fadeInUp 1s ease-out 1s both;
-            width: 100%;
-            max-width: 350px;
-        }
-        
-        .support-label {
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .telegram-button {
+        .cyber-logo {
+            width: 85px;
+            height: 85px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to right, #00d2ff, #8e44ad); /* گرادینت اختصاصی */
-            color: #ffffff;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 50px; /* دکمه گرد */
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 15px;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+            animation: floatLogo 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .cyber-logo::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 27px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(5px);
+        }
+
+        .cyber-logo span {
+            font-size: 2.2rem;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* کارت وضعیت چت آنلاین (با افکت شیشه‌ای) */
+        .status-card {
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.8s ease-out 0.3s both;
             position: relative;
             overflow: hidden;
         }
 
-        .telegram-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.5);
-            background: linear-gradient(to right, #00d2ff, #a569bd);
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--neon-blue);
         }
-        
-        .telegram-button:active {
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #f39c12; /* رنگ نارنجی برای حالت به زودی */
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+            box-shadow: 0 0 10px #f39c12;
+            animation: pulseState 1.5s infinite;
+        }
+
+        @keyframes pulseState {
+            0% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7); }
+            70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(243, 156, 18, 0); }
+            100% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
+        }
+
+        .status-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* دکمه گرافیکی خفن */
+        .action-box {
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .telegram-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.5);
+        }
+
+        .telegram-btn:active {
             transform: translateY(1px);
         }
 
-        .telegram-icon {
-            margin-right: 10px;
-            font-size: 1.4rem;
+        .telegram-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+            transition: transform 0.3s;
         }
-        
-        /* انیمیشن‌ها */
+
+        .telegram-btn:hover svg {
+            transform: scale(1.15) rotate(-10deg);
+        }
+
+        /* فوتر */
+        footer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            opacity: 0.6;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        /* انیمیشن‌های عمومی */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.8); }
+            from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.7; }
-            70% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px 5px rgba(0, 210, 255, 0.5); }
-            100% { transform: scale(0.95); opacity: 0.7; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.6; }
         }
-        
-        /* فوتر */
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.3);
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- بخش لوگو -->
-    <div class="logo-container">
-        <!-- لوگوی اصلی شما که باید در همان پوشه باشد -->
-        <img src="image_0.png" alt="Mobin VPN Logo" class="logo">
+    <div class="container">
+        <!-- بخش برند و هدر -->
+        <div class="brand-box">
+            <div class="cyber-logo">
+                <span>⚡</span>
+            </div>
+            <h1>Mobin VPN</h1>
+            <div class="tagline">Ultra Fast & Secure Connection</div>
+        </div>
+
+        <!-- کارت وضعیت چت آنلاین -->
+        <div class="status-card">
+            <div class="status-title">
+                <span class="pulse-dot"></span>
+                چت آنلاین اختصاصی
+            </div>
+            <p class="status-desc">سیستم پشتیبانی زنده و چت آنلاین در حال توسعه است و به زودی فعال می‌شود.</p>
+        </div>
+
+        <!-- دکمه تلگرام -->
+        <div class="action-box">
+            <a href="https://t.me/Mobin_Gorjizadeh2" class="telegram-btn" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.11-1.79 6.85-2.97 8.22-3.54 3.91-1.63 4.72-1.92 5.25-1.93.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.13-.04.2z"/>
+                </svg>
+                ارتباط مستقیم با پشتیبانی
+            </a>
+        </div>
     </div>
 
-    <!-- بخش وضعیت چت آنلاین -->
-    <div class="status-box">
-        <div class="status-icon">💬</div>
-        <div class="status-text">چت آنلاین</div>
-        <p>در حال آماده‌سازی... به زودی پشتیبانی زنده راه‌اندازی خواهد شد.</p>
-    </div>
-
-    <!-- بخش دکمه تلگرام -->
-    <div class="support-section">
-        <p class="support-label">برای ارتباط مستقیم با من در تلگرام کلیک کنید:</p>
-        <a href="https://t.me/Mobin_Gorjizadeh2" class="telegram-button" target="_blank">
-            <span class="telegram-icon">✈️</span> <!-- آیکون تلگرام -->
-            ارتباط با پشتیبانی
-        </a>
-    </div>
-    
-    <!-- فوتر -->
-    <div class="footer">
-        Mobin VPN - Secure & Fast
-    </div>
+    <footer>
+        SECURE GATEWAY &bull; MOBIN VPN
+    </footer>
 
 </body>
 </html>
