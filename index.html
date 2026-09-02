@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mobin_VPN - Status & Support</title>
+    <title>Mobin VPN - Status & Support</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&family=Orbitron:wght@500;700;900&display=swap');
 
@@ -97,18 +97,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 22px;
-            letter-spacing: -2px; /* فیکس کردن فاصله حروف */
             text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
             animation: pulseGlow 3s infinite alternate;
-        }
-
-        /* چسباندن دقیق زیرخط */
-        .tight-name {
-            letter-spacing: -4px;
-        }
-        .tight-name span {
-            letter-spacing: normal;
-            margin: 0 -3px;
         }
 
         @keyframes pulseGlow {
@@ -154,7 +144,6 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-main);
-            letter-spacing: -1.5px;
         }
 
         .btn-back-lang {
@@ -305,7 +294,7 @@
 <body>
 
     <div id="langScreen" class="screen active">
-        <div class="logo-title tight-name">Mobin<span>_</span>VPN</div>
+        <div class="logo-title">Mobin VPN</div>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 22px;" id="langSubText">لطفاً زبان خود را انتخاب کنید / Please select your language</p>
         <div class="lang-btns">
             <button class="btn-lang" onclick="setLanguage('fa')">فارسی 🇮🇷</button>
@@ -315,7 +304,7 @@
 
     <div id="mainScreen" class="screen">
         <div class="main-header">
-            <div class="main-title tight-name">Mobin<span>_</span>VPN</div>
+            <div class="main-title">Mobin VPN</div>
             <button class="btn-back-lang" onclick="goBackToLang()" id="langSwitchBtn">🌐 زبان</button>
         </div>
 
