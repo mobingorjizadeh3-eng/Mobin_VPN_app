@@ -2,14 +2,14 @@
 <html lang="fa" dir="rtl" id="htmlTag">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MobinVPN - Status & Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobin_VPN - Status & Support</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&family=Orbitron:wght@500;700;900&display=swap');
 
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-bg: rgba(17, 24, 39, 0.75);
             --accent-green: #10b981;
             --accent-yellow: #f59e0b;
             --accent-red: #ef4444;
@@ -30,22 +30,25 @@
             color: var(--text-main);
             font-family: 'Vazirmatn', sans-serif;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow-x: hidden;
             position: relative;
+            width: 100vw;
+            padding: 15px;
         }
 
         /* Animated Background Particles/Glow */
         body::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
-            top: -100px;
-            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(0,0,0,0) 70%);
+            top: -50px;
+            left: -50px;
             animation: floatGlow 8s infinite alternate ease-in-out;
             z-index: -1;
         }
@@ -53,27 +56,26 @@
         body::after {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(0,0,0,0) 70%);
-            bottom: -100px;
-            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(0,0,0,0) 70%);
+            bottom: -50px;
+            right: -50px;
             animation: floatGlow 10s infinite alternate-reverse ease-in-out;
             z-index: -1;
         }
 
         @keyframes floatGlow {
             0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(30px) scale(1.1); }
+            100% { transform: translateY(20px) scale(1.1); }
         }
 
         /* Screen Styles */
         .screen {
             display: none;
             width: 100%;
-            max-width: 480px;
-            padding: 20px;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 440px;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .screen.active {
@@ -81,7 +83,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            from { opacity: 0; transform: translateY(15px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
@@ -92,12 +94,13 @@
 
         .logo-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 900;
             background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
             text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
             animation: pulseGlow 3s infinite alternate;
         }
@@ -109,29 +112,28 @@
 
         .lang-btns {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
         }
 
         .btn-lang {
             flex: 1;
-            padding: 15px;
+            padding: 14px;
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: var(--card-bg);
             color: var(--text-main);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .btn-lang:hover {
             border-color: var(--primary-glow);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.3);
-            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-2px);
+            background: rgba(30, 41, 59, 0.85);
         }
 
         /* Main Dashboard Screen */
@@ -139,24 +141,25 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .main-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         .btn-back-lang {
             background: none;
             border: 1px solid rgba(255,255,255,0.15);
             color: var(--text-muted);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .btn-back-lang:hover {
@@ -164,14 +167,14 @@
             border-color: var(--text-main);
         }
 
-        /* Support Button */
+        /* Support Card */
         .support-card {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(16, 185, 129, 0.2));
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(16, 185, 129, 0.22));
+            border: 1px solid rgba(59, 130, 246, 0.35);
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             backdrop-filter: blur(12px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             position: relative;
@@ -197,16 +200,17 @@
             margin-top: 12px;
             background: #2563eb;
             color: white;
-            padding: 12px 28px;
+            padding: 11px 24px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.95rem;
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
 
         .support-btn:hover {
             background: #1d4ed8;
-            transform: scale(1.03);
+            transform: scale(1.02);
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
         }
 
@@ -215,15 +219,15 @@
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px;
             backdrop-filter: blur(12px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
         .servers-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -233,15 +237,15 @@
         .server-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .server-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background: rgba(15, 23, 42, 0.6);
+            padding: 11px 14px;
+            background: rgba(15, 23, 42, 0.65);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.04);
         }
@@ -249,30 +253,30 @@
         .server-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
         .flag {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
 
         .status-badge {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            padding: 5px 10px;
+            padding: 4px 10px;
             border-radius: 20px;
         }
 
         /* Status Colors & Dots */
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
         }
 
@@ -312,38 +316,33 @@
 </head>
 <body>
 
-    <!-- Language Selection Screen -->
     <div id="langScreen" class="screen active">
         <div class="logo-title">Mobin_VPN</div>
-        <p style="color: var(--text-muted); margin-bottom: 25px;" id="langSubText">لطفاً زبان خود را انتخاب کنید / Please select your language</p>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 22px;" id="langSubText">لطفاً زبان خود را انتخاب کنید / Please select your language</p>
         <div class="lang-btns">
             <button class="btn-lang" onclick="setLanguage('fa')">فارسی 🇮🇷</button>
             <button class="btn-lang" onclick="setLanguage('en')">English 🇺🇸</button>
         </div>
     </div>
 
-    <!-- Main Dashboard Screen -->
     <div id="mainScreen" class="screen">
         <div class="main-header">
             <div class="main-title">Mobin_VPN</div>
             <button class="btn-back-lang" onclick="goBackToLang()" id="langSwitchBtn">🌐 زبان</button>
         </div>
 
-        <!-- Support Card -->
         <div class="support-card">
-            <h3 id="supportHeader">پشتیبانی آنلاین</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;" id="supportDesc">برای ارتباط با ادمین و حل مشکلات کلیک کنید</p>
+            <h3 id="supportHeader" style="font-size: 1.1rem;">پشتیبانی آنلاین</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;" id="supportDesc">برای ارتباط با ادمین و حل مشکلات کلیک کنید</p>
             <a href="https://t.me/Mobin_VPN_Admin" target="_blank" class="support-btn" id="supportBtnText">ارتباط با پشتیبانی</a>
         </div>
 
-        <!-- Servers Box -->
         <div class="servers-container">
             <div class="servers-title">
                 <span>⚡</span> <span id="serversTitleText">وضعیت سرورها (Server Status)</span>
             </div>
             <div class="server-list">
                 
-                <!-- Germany -->
                 <div class="server-item">
                     <div class="server-info">
                         <span class="flag">🇩🇪</span>
@@ -355,7 +354,6 @@
                     </div>
                 </div>
 
-                <!-- America -->
                 <div class="server-item">
                     <div class="server-info">
                         <span class="flag">🇺🇸</span>
@@ -367,7 +365,6 @@
                     </div>
                 </div>
 
-                <!-- New Zealand -->
                 <div class="server-item">
                     <div class="server-info">
                         <span class="flag">🇳🇿</span>
@@ -379,7 +376,6 @@
                     </div>
                 </div>
 
-                <!-- France -->
                 <div class="server-item">
                     <div class="server-info">
                         <span class="flag">🇫🇷</span>
@@ -391,7 +387,6 @@
                     </div>
                 </div>
 
-                <!-- United Kingdom -->
                 <div class="server-item">
                     <div class="server-info">
                         <span class="flag">🇬🇧</span>
@@ -403,7 +398,6 @@
                     </div>
                 </div>
 
-                <!-- Netherlands -->
                 <div class="server-item">
                     <div class="server-info">
                         <span class="flag">🇳🇱</span>
@@ -425,7 +419,6 @@
             const langScreen = document.getElementById('langScreen');
             const mainScreen = document.getElementById('mainScreen');
 
-            // Set Direction and Language attribute
             if (lang === 'fa') {
                 htmlTag.setAttribute('dir', 'rtl');
                 htmlTag.setAttribute('lang', 'fa');
@@ -444,13 +437,11 @@
                 document.getElementById('langSwitchBtn').textContent = '🌐 Language / زبان';
             }
 
-            // Translate Status Badges
             const statusBadges = document.querySelectorAll('.st-text');
             statusBadges.forEach(badge => {
                 badge.textContent = badge.getAttribute(`data-${lang}`);
             });
 
-            // Switch Screens smoothly
             langScreen.classList.remove('active');
             setTimeout(() => {
                 mainScreen.classList.add('active');
