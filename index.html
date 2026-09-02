@@ -1,297 +1,471 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" id="htmlTag">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mobin VPN | امنیت و سرعت پایدار</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobin VPN - Status & Support</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&family=Orbitron:wght@500;700;900&display=swap');
+
         :root {
-            --neon-blue: #00f2fe;
-            --neon-purple: #4facfe;
-            --neon-pink: #ff007f;
-            --bg-dark: #05050a;
-            --card-bg: rgba(15, 23, 42, 0.6);
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --primary-glow: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-color);
             color: var(--text-main);
+            font-family: 'Vazirmatn', sans-serif;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            padding: 30px 20px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* افکت پس‌زمینه متحرک شبکه سایبری */
+        /* Animated Background Particles/Glow */
         body::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(79, 172, 254, 0.03) 40%, transparent 70%);
-            animation: rotateBg 20s linear infinite;
-            z-index: -2;
-        }
-
-        @keyframes rotateBg {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* کانتینر اصلی محتوا */
-        .container {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 1;
-        }
-
-        /* بخش هدر و لوگوی CSS متحرک */
-        .brand-box {
-            text-align: center;
-            margin-bottom: 30px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .cyber-logo {
-            width: 85px;
-            height: 85px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
-            animation: floatLogo 3s ease-in-out infinite;
-            position: relative;
-        }
-
-        .cyber-logo::after {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 27px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            left: -100px;
+            animation: floatGlow 8s infinite alternate ease-in-out;
             z-index: -1;
-            opacity: 0.5;
-            filter: blur(5px);
         }
 
-        .cyber-logo span {
-            font-size: 2.2rem;
-        }
-
-        @keyframes floatLogo {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .tagline {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* کارت وضعیت چت آنلاین (با افکت شیشه‌ای) */
-        .status-card {
-            width: 100%;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 25px 20px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: zoomIn 0.8s ease-out 0.3s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .status-card::before {
+        body::after {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--neon-blue);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(0,0,0,0) 70%);
+            bottom: -100px;
+            right: -100px;
+            animation: floatGlow 10s infinite alternate-reverse ease-in-out;
+            z-index: -1;
         }
 
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background-color: #f39c12; /* رنگ نارنجی برای حالت به زودی */
-            border-radius: 50%;
-            display: inline-block;
-            margin-left: 8px;
-            box-shadow: 0 0 10px #f39c12;
-            animation: pulseState 1.5s infinite;
+        @keyframes floatGlow {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.1); }
         }
 
-        @keyframes pulseState {
-            0% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7); }
-            70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(243, 156, 18, 0); }
-            100% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
-        }
-
-        .status-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .status-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* دکمه گرافیکی خفن */
-        .action-box {
+        /* Screen Styles */
+        .screen {
+            display: none;
             width: 100%;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
+            max-width: 480px;
+            padding: 20px;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .telegram-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #00b4db, #0083b0);
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 700;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .telegram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.5);
-        }
-
-        .telegram-btn:active {
-            transform: translateY(1px);
-        }
-
-        .telegram-btn svg {
-            width: 22px;
-            height: 22px;
-            fill: #fff;
-            transition: transform 0.3s;
-        }
-
-        .telegram-btn:hover svg {
-            transform: scale(1.15) rotate(-10deg);
-        }
-
-        /* فوتر */
-        footer {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            opacity: 0.6;
-            animation: fadeIn 1s ease-out 1s both;
-        }
-
-        /* انیمیشن‌های عمومی */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .screen.active {
+            display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 0.6; }
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Language Selector Screen */
+        #langScreen {
+            text-align: center;
+        }
+
+        .logo-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(59,130,246,0.3)); }
+            100% { filter: drop-shadow(0 0 25px rgba(16,185,129,0.5)); }
+        }
+
+        .lang-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-lang {
+            flex: 1;
+            padding: 15px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-lang:hover {
+            border-color: var(--primary-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.3);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        /* Main Dashboard Screen */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .btn-back-lang {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .btn-back-lang:hover {
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+
+        /* Support Button */
+        .support-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(16, 185, 129, 0.2));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .support-btn {
+            display: inline-block;
+            margin-top: 12px;
+            background: #2563eb;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .support-btn:hover {
+            background: #1d4ed8;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        /* Servers Box */
+        .servers-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .servers-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+        }
+
+        .server-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .server-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .server-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .flag {
+            font-size: 1.4rem;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        /* Status Colors & Dots */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .active-status {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+        }
+        .active-status .status-dot {
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: blink 2s infinite;
+        }
+
+        .unstable-status {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-yellow);
+        }
+        .unstable-status .status-dot {
+            background: var(--accent-yellow);
+            box-shadow: 0 0 8px var(--accent-yellow);
+        }
+
+        .down-status {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+        .down-status .status-dot {
+            background: var(--accent-red);
+            box-shadow: 0 0 8px var(--accent-red);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- بخش برند و هدر -->
-        <div class="brand-box">
-            <div class="cyber-logo">
-                <span>⚡</span>
-            </div>
-            <h1>Mobin VPN</h1>
-            <div class="tagline">Ultra Fast & Secure Connection</div>
-        </div>
-
-        <!-- کارت وضعیت چت آنلاین -->
-        <div class="status-card">
-            <div class="status-title">
-                <span class="pulse-dot"></span>
-                چت آنلاین اختصاصی
-            </div>
-            <p class="status-desc">سیستم پشتیبانی زنده و چت آنلاین در حال توسعه است و به زودی فعال می‌شود.</p>
-        </div>
-
-        <!-- دکمه تلگرام -->
-        <div class="action-box">
-            <a href="https://t.me/Mobin_Gorjizadeh2" class="telegram-btn" target="_blank">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.11-1.79 6.85-2.97 8.22-3.54 3.91-1.63 4.72-1.92 5.25-1.93.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.13-.04.2z"/>
-                </svg>
-                ارتباط مستقیم با پشتیبانی
-            </a>
+    <!-- Language Selection Screen -->
+    <div id="langScreen" class="screen active">
+        <div class="logo-title">Mobin_VPN</div>
+        <p style="color: var(--text-muted); margin-bottom: 25px;" id="langSubText">لطفاً زبان خود را انتخاب کنید / Please select your language</p>
+        <div class="lang-btns">
+            <button class="btn-lang" onclick="setLanguage('fa')">فارسی 🇮🇷</button>
+            <button class="btn-lang" onclick="setLanguage('en')">English 🇺🇸</button>
         </div>
     </div>
 
-    <footer>
-        SECURE GATEWAY &bull; MOBIN VPN
-    </footer>
+    <!-- Main Dashboard Screen -->
+    <div id="mainScreen" class="screen">
+        <div class="main-header">
+            <div class="main-title">Mobin_VPN</div>
+            <button class="btn-back-lang" onclick="goBackToLang()" id="langSwitchBtn">🌐 زبان</button>
+        </div>
 
+        <!-- Support Card -->
+        <div class="support-card">
+            <h3 id="supportHeader">پشتیبانی آنلاین</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;" id="supportDesc">برای ارتباط با ادمین و حل مشکلات کلیک کنید</p>
+            <a href="https://t.me/Mobin_VPN_Admin" target="_blank" class="support-btn" id="supportBtnText">ارتباط با پشتیبانی</a>
+        </div>
+
+        <!-- Servers Box -->
+        <div class="servers-container">
+            <div class="servers-title">
+                <span>⚡</span> <span id="serversTitleText">وضعیت سرورها (Server Status)</span>
+            </div>
+            <div class="server-list">
+                
+                <!-- Germany -->
+                <div class="server-item">
+                    <div class="server-info">
+                        <span class="flag">🇩🇪</span>
+                        <span>Germany</span>
+                    </div>
+                    <div class="status-badge active-status">
+                        <span class="status-dot"></span>
+                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
+                    </div>
+                </div>
+
+                <!-- America -->
+                <div class="server-item">
+                    <div class="server-info">
+                        <span class="flag">🇺🇸</span>
+                        <span>America</span>
+                    </div>
+                    <div class="status-badge down-status">
+                        <span class="status-dot"></span>
+                        <span class="st-text" data-fa="خارج از دسترس" data-en="Offline">خارج از دسترس</span>
+                    </div>
+                </div>
+
+                <!-- New Zealand -->
+                <div class="server-item">
+                    <div class="server-info">
+                        <span class="flag">🇳🇿</span>
+                        <span>New Zealand</span>
+                    </div>
+                    <div class="status-badge active-status">
+                        <span class="status-dot"></span>
+                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
+                    </div>
+                </div>
+
+                <!-- France -->
+                <div class="server-item">
+                    <div class="server-info">
+                        <span class="flag">🇫🇷</span>
+                        <span>France</span>
+                    </div>
+                    <div class="status-badge active-status">
+                        <span class="status-dot"></span>
+                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
+                    </div>
+                </div>
+
+                <!-- United Kingdom -->
+                <div class="server-item">
+                    <div class="server-info">
+                        <span class="flag">🇬🇧</span>
+                        <span>United Kingdom</span>
+                    </div>
+                    <div class="status-badge active-status">
+                        <span class="status-dot"></span>
+                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
+                    </div>
+                </div>
+
+                <!-- Netherlands -->
+                <div class="server-item">
+                    <div class="server-info">
+                        <span class="flag">🇳🇱</span>
+                        <span>Netherlands</span>
+                    </div>
+                    <div class="status-badge unstable-status">
+                        <span class="status-dot"></span>
+                        <span class="st-text" data-fa="اتصال ناپایدار" data-en="Unstable">اتصال ناپایدار</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            const htmlTag = document.getElementById('htmlTag');
+            const langScreen = document.getElementById('langScreen');
+            const mainScreen = document.getElementById('mainScreen');
+
+            // Set Direction and Language attribute
+            if (lang === 'fa') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'fa');
+                document.getElementById('supportHeader').textContent = 'پشتیبانی آنلاین';
+                document.getElementById('supportDesc').textContent = 'برای ارتباط با ادمین و حل مشکلات کلیک کنید';
+                document.getElementById('supportBtnText').textContent = 'ارتباط با پشتیبانی';
+                document.getElementById('serversTitleText').textContent = 'وضعیت سرورها (Server Status)';
+                document.getElementById('langSwitchBtn').textContent = '🌐 زبان / Language';
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'en');
+                document.getElementById('supportHeader').textContent = 'Online Support';
+                document.getElementById('supportDesc').textContent = 'Click to contact the admin for assistance';
+                document.getElementById('supportBtnText').textContent = 'Contact Support';
+                document.getElementById('serversTitleText').textContent = 'Server Status';
+                document.getElementById('langSwitchBtn').textContent = '🌐 Language / زبان';
+            }
+
+            // Translate Status Badges
+            const statusBadges = document.querySelectorAll('.st-text');
+            statusBadges.forEach(badge => {
+                badge.textContent = badge.getAttribute(`data-${lang}`);
+            });
+
+            // Switch Screens smoothly
+            langScreen.classList.remove('active');
+            setTimeout(() => {
+                mainScreen.classList.add('active');
+            }, 150);
+        }
+
+        function goBackToLang() {
+            const mainScreen = document.getElementById('mainScreen');
+            const langScreen = document.getElementById('langScreen');
+
+            mainScreen.classList.remove('active');
+            setTimeout(() => {
+                langScreen.classList.add('active');
+            }, 150);
+        }
+    </script>
 </body>
 </html>
