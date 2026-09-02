@@ -40,7 +40,6 @@
             padding: 15px;
         }
 
-        /* Animated Background Particles/Glow */
         body::before {
             content: '';
             position: absolute;
@@ -70,7 +69,6 @@
             100% { transform: translateY(20px) scale(1.1); }
         }
 
-        /* Screen Styles */
         .screen {
             display: none;
             width: 100%;
@@ -87,22 +85,30 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Language Selector Screen */
         #langScreen {
             text-align: center;
         }
 
         .logo-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 900;
             background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
+            margin-bottom: 22px;
+            letter-spacing: -2px; /* فیکس کردن فاصله حروف */
             text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
             animation: pulseGlow 3s infinite alternate;
+        }
+
+        /* چسباندن دقیق زیرخط */
+        .tight-name {
+            letter-spacing: -4px;
+        }
+        .tight-name span {
+            letter-spacing: normal;
+            margin: 0 -3px;
         }
 
         @keyframes pulseGlow {
@@ -136,7 +142,6 @@
             background: rgba(30, 41, 59, 0.85);
         }
 
-        /* Main Dashboard Screen */
         .main-header {
             display: flex;
             justify-content: space-between;
@@ -146,10 +151,10 @@
 
         .main-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-main);
-            letter-spacing: -0.5px;
+            letter-spacing: -1.5px;
         }
 
         .btn-back-lang {
@@ -167,7 +172,6 @@
             border-color: var(--text-main);
         }
 
-        /* Support Card */
         .support-card {
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(16, 185, 129, 0.22));
             border: 1px solid rgba(59, 130, 246, 0.35);
@@ -179,20 +183,6 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
-        }
-
-        .support-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(60deg, transparent, rgba(255,255,255,0.05), transparent);
-            transform: rotate(45deg);
-            animation: shine 4s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
         }
 
         .support-btn {
@@ -214,7 +204,6 @@
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
         }
 
-        /* Servers Box */
         .servers-container {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -273,7 +262,6 @@
             border-radius: 20px;
         }
 
-        /* Status Colors & Dots */
         .status-dot {
             width: 7px;
             height: 7px;
@@ -317,7 +305,7 @@
 <body>
 
     <div id="langScreen" class="screen active">
-        <div class="logo-title">Mobin_VPN</div>
+        <div class="logo-title tight-name">Mobin<span>_</span>VPN</div>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 22px;" id="langSubText">لطفاً زبان خود را انتخاب کنید / Please select your language</p>
         <div class="lang-btns">
             <button class="btn-lang" onclick="setLanguage('fa')">فارسی 🇮🇷</button>
@@ -327,7 +315,7 @@
 
     <div id="mainScreen" class="screen">
         <div class="main-header">
-            <div class="main-title">Mobin_VPN</div>
+            <div class="main-title tight-name">Mobin<span>_</span>VPN</div>
             <button class="btn-back-lang" onclick="goBackToLang()" id="langSwitchBtn">🌐 زبان</button>
         </div>
 
