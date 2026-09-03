@@ -1,0 +1,11 @@
+{
+  "announcement": "اطلاعیه مهم: سرور آمریکا به دلیل بروزرسانی موقتاً خاموش است.",
+  "servers": {
+    "germany": "active",
+    "america": "down",
+    "newzealand": "active",
+    "france": "active",
+    "uk": "active",
+    "netherlands": "unstable"
+  }
+}
