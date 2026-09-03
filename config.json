@@ -1,11 +1,11 @@
 {
   "announcement": "",
   "servers": {
-    "germany": "active",
+    "germany": "down",
     "america": "down",
     "newzealand": "active",
     "france": "active",
     "uk": "active",
-    "netherlands": "unstable"
+    "netherlands": "active"
   }
 }
