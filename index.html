@@ -289,10 +289,69 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
         }
+
+        /* Modal / Announcement Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-box {
+            background: #111827;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 16px;
+            padding: 22px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.show .modal-box {
+            transform: scale(1);
+        }
+        .modal-btn {
+            margin-top: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .modal-btn:hover {
+            background: #1d4ed8;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="modal-overlay">
+        <div class="modal-box">
+            <div style="font-size: 1.8rem; margin-bottom: 8px;">📢</div>
+            <h3 id="modalTitle" style="margin-bottom: 10px; font-size: 1.1rem;">اعلامیه مهم</h3>
+            <p id="modalText" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"></p>
+            <button class="modal-btn" onclick="closeModal()" id="modalBtnText">متوجه شدم</button>
+        </div>
+    </div>
+
+    <!-- Language Selection Screen -->
     <div id="langScreen" class="screen active">
         <div class="logo-title">Mobin VPN</div>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 22px;" id="langSubText">لطفاً زبان خود را انتخاب کنید / Please select your language</p>
@@ -302,6 +361,7 @@
         </div>
     </div>
 
+    <!-- Main Dashboard Screen -->
     <div id="mainScreen" class="screen">
         <div class="main-header">
             <div class="main-title">Mobin VPN</div>
@@ -320,70 +380,40 @@
             </div>
             <div class="server-list">
                 
+                <!-- Germany -->
                 <div class="server-item">
-                    <div class="server-info">
-                        <span class="flag">🇩🇪</span>
-                        <span>Germany</span>
-                    </div>
-                    <div class="status-badge active-status">
-                        <span class="status-dot"></span>
-                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
-                    </div>
+                    <div class="server-info"><span class="flag">🇩🇪</span><span>Germany</span></div>
+                    <div class="status-badge" id="badge-germany"><span class="status-dot"></span><span class="st-text" data-key="germany"></span></div>
                 </div>
 
+                <!-- America -->
                 <div class="server-item">
-                    <div class="server-info">
-                        <span class="flag">🇺🇸</span>
-                        <span>America</span>
-                    </div>
-                    <div class="status-badge down-status">
-                        <span class="status-dot"></span>
-                        <span class="st-text" data-fa="خارج از دسترس" data-en="Offline">خارج از دسترس</span>
-                    </div>
+                    <div class="server-info"><span class="flag">🇺🇸</span><span>America</span></div>
+                    <div class="status-badge" id="badge-america"><span class="status-dot"></span><span class="st-text" data-key="america"></span></div>
                 </div>
 
+                <!-- New Zealand -->
                 <div class="server-item">
-                    <div class="server-info">
-                        <span class="flag">🇳🇿</span>
-                        <span>New Zealand</span>
-                    </div>
-                    <div class="status-badge active-status">
-                        <span class="status-dot"></span>
-                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
-                    </div>
+                    <div class="server-info"><span class="flag">🇳🇿</span><span>New Zealand</span></div>
+                    <div class="status-badge" id="badge-newzealand"><span class="status-dot"></span><span class="st-text" data-key="newzealand"></span></div>
                 </div>
 
+                <!-- France -->
                 <div class="server-item">
-                    <div class="server-info">
-                        <span class="flag">🇫🇷</span>
-                        <span>France</span>
-                    </div>
-                    <div class="status-badge active-status">
-                        <span class="status-dot"></span>
-                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
-                    </div>
+                    <div class="server-info"><span class="flag">🇫🇷</span><span>France</span></div>
+                    <div class="status-badge" id="badge-france"><span class="status-dot"></span><span class="st-text" data-key="france"></span></div>
                 </div>
 
+                <!-- United Kingdom -->
                 <div class="server-item">
-                    <div class="server-info">
-                        <span class="flag">🇬🇧</span>
-                        <span>United Kingdom</span>
-                    </div>
-                    <div class="status-badge active-status">
-                        <span class="status-dot"></span>
-                        <span class="st-text" data-fa="فعال" data-en="Active">فعال</span>
-                    </div>
+                    <div class="server-info"><span class="flag">🇬🇧</span><span>United Kingdom</span></div>
+                    <div class="status-badge" id="badge-uk"><span class="status-dot"></span><span class="st-text" data-key="uk"></span></div>
                 </div>
 
+                <!-- Netherlands -->
                 <div class="server-item">
-                    <div class="server-info">
-                        <span class="flag">🇳🇱</span>
-                        <span>Netherlands</span>
-                    </div>
-                    <div class="status-badge unstable-status">
-                        <span class="status-dot"></span>
-                        <span class="st-text" data-fa="اتصال ناپایدار" data-en="Unstable">اتصال ناپایدار</span>
-                    </div>
+                    <div class="server-info"><span class="flag">🇳🇱</span><span>Netherlands</span></div>
+                    <div class="status-badge" id="badge-netherlands"><span class="status-dot"></span><span class="st-text" data-key="netherlands"></span></div>
                 </div>
 
             </div>
@@ -391,7 +421,22 @@
     </div>
 
     <script>
+        let globalConfig = null;
+        let currentLang = 'fa';
+
+        // Fetch config data on load
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json');
+                globalConfig = await response.json();
+            } catch (e) {
+                console.error('Error loading config', e);
+            }
+        }
+        loadConfig();
+
         function setLanguage(lang) {
+            currentLang = lang;
             const htmlTag = document.getElementById('htmlTag');
             const langScreen = document.getElementById('langScreen');
             const mainScreen = document.getElementById('mainScreen');
@@ -404,6 +449,8 @@
                 document.getElementById('supportBtnText').textContent = 'ارتباط با پشتیبانی';
                 document.getElementById('serversTitleText').textContent = 'وضعیت سرورها (Server Status)';
                 document.getElementById('langSwitchBtn').textContent = '🌐 زبان / Language';
+                document.getElementById('modalTitle').textContent = 'اعلامیه مهم';
+                document.getElementById('modalBtnText').textContent = 'متوجه شدم';
             } else {
                 htmlTag.setAttribute('dir', 'ltr');
                 htmlTag.setAttribute('lang', 'en');
@@ -412,17 +459,50 @@
                 document.getElementById('supportBtnText').textContent = 'Contact Support';
                 document.getElementById('serversTitleText').textContent = 'Server Status';
                 document.getElementById('langSwitchBtn').textContent = '🌐 Language / زبان';
+                document.getElementById('modalTitle').textContent = 'Important Notice';
+                document.getElementById('modalBtnText').textContent = 'Got it';
             }
 
-            const statusBadges = document.querySelectorAll('.st-text');
-            statusBadges.forEach(badge => {
-                badge.textContent = badge.getAttribute(`data-${lang}`);
-            });
+            if (globalConfig) {
+                updateServersUI();
+                // Check announcement
+                if (globalConfig.announcement && globalConfig.announcement.trim() !== "") {
+                    document.getElementById('modalText').textContent = globalConfig.announcement;
+                    document.getElementById('announcementModal').classList.add('show');
+                }
+            }
 
             langScreen.classList.remove('active');
             setTimeout(() => {
                 mainScreen.classList.add('active');
             }, 150);
+        }
+
+        function updateServersUI() {
+            if (!globalConfig || !globalConfig.servers) return;
+
+            const translations = {
+                active: { fa: 'فعال', en: 'Active', class: 'active-status' },
+                down: { fa: 'خارج از دسترس', en: 'Offline', class: 'down-status' },
+                unstable: { fa: 'اتصال ناپایدار', en: 'Unstable', class: 'unstable-status' }
+            };
+
+            for (const [serverKey, statusValue] of Object.entries(globalConfig.servers)) {
+                const badge = document.getElementById(`badge-${serverKey}`);
+                if (!badge) continue;
+
+                // Reset classes
+                badge.className = `status-badge ${translations[statusValue] ? translations[statusValue].class : 'active-status'}`;
+                
+                const textSpan = badge.querySelector('.st-text');
+                if (textSpan && translations[statusValue]) {
+                    textSpan.textContent = translations[statusValue][currentLang];
+                }
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('announcementModal').classList.remove('show');
         }
 
         function goBackToLang() {
