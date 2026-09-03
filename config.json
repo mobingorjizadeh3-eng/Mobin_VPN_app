@@ -1,9 +1,9 @@
 {
-  "announcement": "",
+  "announcement": "دوستانی که رایتل دارن داریم یه ابدیت میدیم که سرعتتون بهتر بشه با تشکر از صبر و همراهی شما",
   "servers": {
     "germany": "down",
     "america": "down",
-    "newzealand": "active",
+    "newzealand": "unstable",
     "france": "active",
     "uk": "active",
     "netherlands": "active"
