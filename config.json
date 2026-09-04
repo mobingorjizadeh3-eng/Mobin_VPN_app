@@ -1,10 +1,10 @@
 {
-  "announcement": "دوستانی که رایتل دارن داریم یه ابدیت میدیم که سرعتتون بهتر بشه با تشکر از صبر و همراهی شما",
+  "announcement": "لیست وضعیت سرور ها هر چند دقیقه یا هر چند ساعت ابدیت میشه اگه وضعیت ایست با وضعیت سرور های شما نمی خوند لطفا به پشتیبانی اعلام کنید❤️",
   "servers": {
     "germany": "active",
     "america": "down",
-    "newzealand": "down",
-    "france": "unstable",
+    "newzealand": "active",
+    "france": "down",
     "uk": "active",
     "netherlands": "active"
   }
