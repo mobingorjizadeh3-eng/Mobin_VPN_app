@@ -1,11 +1,11 @@
 {
-  "announcement": "دوستان مشکل حل شد و ربات دوباره راه اندازی شد ممنون از صبر و شکیبایی شما",
+  "announcement": "دوستان مجموعه به مشکل خورده لطفا کانال رو چک کنید",
   "servers": {
-    "germany": "active",
+    "germany": "down",
     "america": "down",
-    "newzealand": "active",
-    "france": "active",
-    "uk": "active",
+    "newzealand": "down",
+    "france": "down",
+    "uk": "down",
     "netherlands": "active"
   }
 }
