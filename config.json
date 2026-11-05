@@ -1,11 +1,11 @@
 {
-  "announcement": "",
+  "logo_url": "https://i.ibb.co/JwHNRFx5/Logo.png",
+  "announcement": "🔥 تخفیف ویژه حجم اضافه روی تمامی سرورها تا پایان هفته!",
+  "support_username": "Mobin_VPN_Admin",
   "servers": {
-    "germany": "‏active",
-    "america": "down",
-    "newzealand": "‏active",
-    "france": "down",
-    "uk": "‏active",
-    "netherlands": "‏active"
+    "germany": { "name": "🇩🇪 آلمان (Germany)", "status": "active", "ping": "45ms" },
+    "netherlands": { "name": "🇳🇱 هلند (Netherlands)", "status": "active", "ping": "60ms" },
+    "america": { "name": "🇺🇸 آمریکا (USA)", "status": "down", "ping": "---" },
+    "france": { "name": "🇫🇷 فرانسه (France)", "status": "unstable", "ping": "140ms" }
   }
 }
