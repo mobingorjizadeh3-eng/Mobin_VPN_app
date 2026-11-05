@@ -1,11 +1,11 @@
 {
   "announcement": "دوستان مجموعه به مشکل خورده لطفا کانال رو چک کنید",
   "servers": {
-    "germany": "down",
+    "germany": "‏active",
     "america": "down",
-    "newzealand": "down",
+    "newzealand": "‏active",
     "france": "down",
-    "uk": "down",
-    "netherlands": "down"
+    "uk": "‏active",
+    "netherlands": "‏active"
   }
 }
