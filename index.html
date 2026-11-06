@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobin VPN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&family=Orbitron:wght@500;700;900&display=swap');
+        
+        :root {
+            --bg-color: #060913;
+            --card-bg: rgba(13, 19, 33, 0.85);
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --primary-glow: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* انیمیشن پس‌زمینه نئونی */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(0,0,0,0) 70%);
+            top: -50px;
+            left: -50px;
+            animation: floatOrb 8s infinite alternate ease-in-out;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(0,0,0,0) 70%);
+            bottom: -50px;
+            right: -50px;
+            animation: floatOrb 10s infinite alternate-reverse ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(20px) scale(1.1); }
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        /* سیستم صفحات */
+        .page {
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* صفحه اول: ورود و لوگو */
+        .welcome-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 35px 20px;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .logo-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 16px;
+            border: 2px solid var(--primary-glow);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+            animation: pulseLogo 3s infinite alternate;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(59,130,246,0.4); }
+            100% { transform: scale(1.05); box-shadow: 0 0 30px rgba(59,130,246,0.7); }
+        }
+
+        .welcome-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .welcome-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .btn-enter {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-enter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        /* صفحه دوم: داشبورد */
+        .header-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mini-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary-glow);
+        }
+
+        .app-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover { color: var(--text-main); border-color: var(--text-main); }
+
+        .promo-banner {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(16, 185, 129, 0.12));
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 16px;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #93c5fd;
+            line-height: 1.4;
+        }
+
+        .servers-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 16px;
+            backdrop-filter: blur(12px);
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .server-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .server-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: 0.2s;
+        }
+
+        .server-item:hover { background: rgba(59, 130, 246, 0.05); }
+
+        .server-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .status-badge.active { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-badge.down { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .status-badge.unstable { background: rgba(245, 158, 11, 0.15); color: var(--accent-yellow); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+        /* دکمه‌های ارتباطی (ربات، کانال، پشتیبانی) */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .link-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            backdrop-filter: blur(12px);
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .link-card:hover {
+            border-color: var(--primary-glow);
+            transform: translateY(-2px);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .link-card span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .support-full-btn {
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: 0.2s;
+        }
+
+        .support-full-btn:hover { opacity: 0.9; transform: scale(1.01); }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- صفحه اول: خوش آمدگویی و لوگو -->
+        <div id="page1" class="page active">
+            <div class="welcome-card">
+                <img id="logo1" src="https://i.ibb.co/JwHNRFx5/Logo.png" alt="Logo" class="logo-img">
+                <div class="welcome-title">Mobin VPN</div>
+                <div class="welcome-sub">سرویس امن، پرسرعت و پایدار</div>
+                <button class="btn-enter" onclick="goToPage2()">ورود به پنل کاربری ⚡</button>
+            </div>
+        </div>
+
+        <!-- صفحه دوم: داشبورد اصلی -->
+        <div id="page2" class="page">
+            <div class="header-card">
+                <div class="header-left">
+                    <img id="logo2" src="https://i.ibb.co/JwHNRFx5/Logo.png" alt="Logo" class="mini-logo">
+                    <div class="app-title">Mobin VPN</div>
+                </div>
+                <button class="btn-back" onclick="goToPage1()">بازگشت ↩</button>
+            </div>
+
+            <!-- بنر اطلاعیه -->
+            <div id="promoBanner" class="promo-banner" style="display: none;"></div>
+
+            <!-- لیست سرورها -->
+            <div class="servers-container">
+                <div class="section-title">
+                    <span>⚡ وضعیت سرورها</span>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);" id="serverCount">بارگذاری...</span>
+                </div>
+                <div class="server-list" id="serverListContainer"></div>
+            </div>
+
+            <!-- دکمه‌های ارتباطی (ربات و کانال) -->
+            <div class="links-grid">
+                <a id="botLink" href="#" target="_blank" class="link-card">
+                    🤖 ربات تلگرام
+                    <span id="botUserText">@Mobinprobot</span>
+                </a>
+                <a id="channelLink" href="#" target="_blank" class="link-card">
+                    📢 کانال تلگرام
+                    <span id="channelText">Mobin1VPN</span>
+                </a>
+            </div>
+
+            <!-- پشتیبانی -->
+            <a id="supportLink" href="#" target="_blank" class="support-full-btn">ارتباط با پشتیبانی ( @Mobin1Support ) 💬</a>
+        </div>
+    </div>
+
+    <script>
+        function goToPage2() {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        }
+
+        function goToPage1() {
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page1').classList.add('active');
+        }
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json?t=' + Date.now());
+                if (!response.ok) throw new Error('Failed to load config');
+                const config = await response.json();
+
+                // تنظیم لوگو
+                if (config.logo_url) {
+                    document.getElementById('logo1').src = config.logo_url;
+                    document.getElementById('logo2').src = config.logo_url;
+                }
+
+                // بنر اطلاعیه
+                if (config.announcement && config.announcement.trim() !== "") {
+                    const banner = document.getElementById('promoBanner');
+                    banner.textContent = config.announcement;
+                    banner.style.display = 'block';
+                }
+
+                // لینک‌ها و آیدی‌ها
+                if (config.support_username) {
+                    document.getElementById('supportLink').href = `https://t.me/${config.support_username}`;
+                    document.getElementById('supportLink').textContent = `ارتباط با پشتیبانی ( @${config.support_username} ) 💬`;
+                }
+
+                if (config.bot_username) {
+                    document.getElementById('botLink').href = `https://t.me/${config.bot_username}`;
+                    document.getElementById('botUserText').textContent = `@${config.bot_username}`;
+                }
+
+                if (config.channel_url) {
+                    document.getElementById('channelLink').href = config.channel_url;
+                }
+
+                // رندر سرورها
+                const container = document.getElementById('serverListContainer');
+                container.innerHTML = '';
+                
+                const servers = config.servers || {};
+                const keys = Object.keys(servers);
+                document.getElementById('serverCount').textContent = `${keys.length} سرور فعال`;
+
+                for (const [key, srv] of Object.entries(servers)) {
+                    let statusText = 'متصل';
+                    let badgeClass = 'active';
+                    
+                    if (srv.status === 'down') {
+                        statusText = 'خاموش';
+                        badgeClass = 'down';
+                    } else if (srv.status === 'unstable') {
+                        statusText = 'ناپایدار';
+                        badgeClass = 'unstable';
+                    }
+
+                    container.innerHTML += `
+                        <div class="server-item">
+                            <span class="server-name">${srv.name}</span>
+                            <span class="status-badge ${badgeClass}">${statusText}</span>
+                        </div>
+                    `;
+                }
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('serverCount').textContent = 'خطا در بارگذاری سرورها';
+            }
+        }
+
+        loadConfig();
+    </script>
+</body>
+</html>
