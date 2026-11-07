@@ -5,9 +5,10 @@
   "bot_username": "Mobinprobot",
   "channel_url": "https://t.me/mobin1vpn",
   "servers": {
-    "germany": { "name": "🇩🇪 آلمان (Germany)", "status": "active" },
-    "netherlands": { "name": "🇳🇱 هلند (Netherlands)", "status": "active" },
-    "america": { "name": "🇺🇸 آمریکا (USA)", "status": "down" },
-    "france": { "name": "🇫🇷 فرانسه (France)", "status": "unstable" }
+    "germany1": { "name": "🇩🇪 Germany 1", "status": "active" },
+    "france": { "name": "🇫🇷 France", "status": "active" },
+    "netherlands": { "name": "🇳🇱 Netherlands", "status": "active" },
+    "germany2": { "name": "🇩🇪 Germany 2", "status": "active" },
+    "uk": { "name": "🇬🇧 United Kingdom", "status": "active" }
   }
 }
